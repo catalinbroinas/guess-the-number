@@ -1,0 +1,126 @@
+// =================================
+//   MIXINS
+// =================================
+
+// Imports
+@use 'sass:map';
+@use 'variables' as *;
+
+// =================================
+//   TYPOGRAPHY
+// =================================
+
+@mixin custom-text(
+  $font-family: $font-text, 
+  $font-weight: 400, 
+  $font-size: $fs-base,
+  $color: $text-primary,
+  $line-height: 1.5,
+  $responsive: false
+) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  color: $color;
+  line-height: $line-height;
+
+  @if $responsive == true {
+    @include media-breakpoint-down($bp-md) {
+      font-size: calc($font-size * 0.9);
+    }
+  }
+}
+
+// Headings
+@mixin page-title($size: $fs-xxxl, $color: $text-primary) {
+  @include custom-text($font-title, 700, $size, $color, 1.1, true);
+}
+
+@mixin title($size: $fs-xxl, $color: $text-primary) {
+  @include custom-text($font-title, 700, $size, $color, 1.3, true);
+}
+
+@mixin subtitle($size: $fs-xl, $color: $text-secondary) {
+  @include custom-text($font-title, 600, $size, $color, 1.4, true);
+}
+
+// Body text
+@mixin text($size: $fs-base, $color: $text-secondary) {
+  @include custom-text($font-text, 400, $size, $color, 1.6, true);
+}
+
+@mixin text-muted($size: $fs-base) {
+  @include custom-text($font-text, 400, $size, $text-muted, 1.6, true);
+}
+
+@mixin lead {
+  @include custom-text($font-text, 400, $fs-lg, $text-secondary, 1.8, true);
+}
+
+@mixin small-text {
+  @include custom-text($font-text, 400, $fs-sm, $text-muted, 1.5);
+}
+
+@mixin footer-text {
+  @include custom-text($font-text, 500, $fs-sm, $text-secondary, 1.4);
+  opacity: 0.9;
+}
+
+// =================================
+//   SPACING
+// =================================
+
+// Used for margin, padding, gap.
+@mixin spacing($map, $property, $size, $breakpoint: null) {
+  $value: map.get($map, $size);
+
+  @if $breakpoint == null {
+    #{$property}: $value !important;
+  } @else {
+    $min-width: map.get($breakpoints, $breakpoint);
+    @media (min-width: $min-width) {
+      #{$property}: $value !important;
+    }
+  }
+}
+
+// =================================
+//   STYLES
+// =================================
+
+// Masks
+@mixin mask-dark($opacity: 0.15) {
+  background-color: rgba(0, 0, 0, $opacity);
+}
+
+@mixin mask-light($opacity: 0.15) {
+  background-color: rgba(251, 251, 251, $opacity);
+}
+
+// Effects
+@mixin glass-effect {
+  background: hsla(0, 0%, 100%, 0.55);
+  backdrop-filter: blur(30px);
+}
+
+// =================================
+//   MEDIA QUERIES
+// =================================
+
+@mixin media-breakpoint-up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @media (max-width: ($breakpoint - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper) {
+  @media (min-width: $lower) and (max-width: ($upper - 0.02px)) {
+    @content;
+  }
+}

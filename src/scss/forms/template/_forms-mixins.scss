@@ -1,0 +1,356 @@
+// =================================
+//   FORMS
+// =================================
+
+// Imports
+@use 'sass:color';
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+@use './variables' as vars;
+
+// =================================
+//   BASE
+// =================================
+
+@mixin form-disabled {
+  background-color: $disabled-bg;
+  color: $disabled-text;
+  border-color: $disabled-border;
+  cursor: not-allowed;
+}
+
+// =================================
+//   INPUT FIELDS
+// =================================
+
+@mixin form-control(
+  $icon: false,
+  $bg: $bg-page,
+  $color: $text-primary,
+  $border-color: vars.$form-control-border-color,
+  $border-color-focus: vars.$form-control-border-color-focus,
+  $font-size: $fs-base,
+  $padding: vars.$form-control-padding,
+  $padding-alt: vars.$form-control-padding-alt,
+  $font-family: vars.$font-form
+) {
+  font-family: $font-family;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $border-color;
+  outline: 0;
+  font-size: $font-size;
+  color: $color;
+  padding: $padding;
+  background: $bg;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+
+  &:hover:not(:focus):not(:disabled) {
+    border-color: color.scale($border-color, $lightness: -10%);
+  }
+
+  &:focus {
+    border-color: $border-color-focus;
+    box-shadow: 0 1px 0 0 $border-color-focus;
+  }
+
+  &:disabled {
+    @include form-disabled;
+  }
+
+  @if $icon {
+    padding: $padding-alt;
+  }
+}
+
+@mixin form-label(
+  $icon: false,
+  $inside: false,
+  $color: vars.$form-label-color,
+  $color-floating: vars.$form-label-floating-color,
+  $font-size: vars.$form-label-font-size,
+  $font-size-floating: vars.$form-label-floating-font-size,
+  $left: vars.$form-label-left,
+  $left-alt: vars.$form-label-left-alt,
+) {
+  $left-used: if($icon, $left-alt, $left);
+  $padding-top-used: if($icon, vars.$form-control-padding-top-alt, vars.$form-control-padding-top);
+
+  position: absolute;
+  transition-property: transform, top, left, font-size, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+
+  @if $inside {
+    cursor: text;
+    pointer-events: auto;
+    top: 50%;
+    left: $left-used;
+    font-size: $font-size;
+    color: $color;
+    transform: translateY(-50%);
+  } @else {
+    cursor: default;
+    pointer-events: none;
+    top: $padding-top-used;
+    left: 0;
+    font-size: $font-size-floating;
+    color: $color-floating;
+    transform: translateY(calc(-100% - #{$padding-top-used}));
+  }
+}
+
+// =================================
+//   SELECT
+// =================================
+
+@mixin form-select(
+  $bg: $bg-page,
+  $color: $text-primary,
+  $border-color: vars.$form-select-border-color,
+  $border-color-focus: vars.$form-select-border-color-focus,
+  $padding: vars.$form-select-padding,
+  $rounded: $rounded-sm,
+  $font-size: $fs-base,
+  $font-family: vars.$font-form,
+) {
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $color;
+  background-color: $bg;
+  border: 1px solid $border-color;
+  border-radius: $rounded;
+  padding: $padding;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  // Arrow
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 6 8 10 12 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right vars.$form-select-arrow-right center;
+  background-size: vars.$form-select-arrow-size;
+  padding-right: vars.$form-select-arrow-padding;
+
+  &:hover,
+  &:active {
+    border-color: color.scale($border-color, $lightness: -25%);
+  }
+
+  &:focus {
+    border-color: $border-color-focus;
+    box-shadow: 0 0 0 0.2rem rgba($border-color-focus, 0.25);
+  }
+
+  &:disabled {
+    @include form-disabled;
+  }
+
+  option {
+    color: $color;
+    background-color: $bg;
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  option:checked { font-weight: 600; }
+  option[disabled] { color: rgba($color, 0.6); }
+
+  // Responsive font-size
+  @include media-breakpoint-down($bp-md) {
+    font-size: calc(#{$font-size} * 0.9);
+  }
+}
+
+// =================================
+//   CHECKBOX
+// =================================
+
+@mixin checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  gap: 0.5rem;
+}
+
+@mixin checkbox-input(
+  $size: vars.$checkbox-size,
+  $bg: vars.$checkbox-bg,
+  $bg-checked: vars.$checkbox-bg-checked,
+  $border-color: vars.$checkbox-border,
+  $border-radius: vars.$checkbox-border-radius
+) {
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  width: $size;
+  height: $size;
+  background-color: $bg;
+  border: 2px solid $border-color;
+  border-radius: $border-radius;
+  transition-property: background-color, border-color, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+
+  &:focus,
+  &:hover:not(:disabled) {
+    border-color: color.scale($bg-checked, $lightness: -10%);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($bg-checked, 0.25);
+  }
+
+  &:checked {
+    border-color: $bg-checked;
+    background-color: $bg-checked;
+    transform: scale(1.05);
+  }
+
+   &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: vars.$check-width;
+    height: vars.$check-height;
+    border: solid vars.$checkbox-checkmark-color;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -55%) scale(0) rotate(45deg);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:checked::after {
+    transform: translate(-50%, -55%) scale(1) rotate(45deg);
+  }
+
+  &:disabled {
+    @include form-disabled;
+  }
+}
+
+@mixin checkbox-label(
+  $font-size: $fs-base,
+  $color: vars.$checkbox-label,
+  $font-family: vars.$font-form
+) {
+  cursor: pointer;
+  font-size: $font-size;
+  color: $color;
+  font-weight: 500;
+  font-family: $font-family;
+}
+
+// =================================
+//   RADIO
+// =================================
+
+@mixin form-check {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  gap: 0.5rem;
+}
+
+@mixin form-check-input(
+  $size: vars.$radio-size,
+  $bg: vars.$radio-bg,
+  $bg-checked: vars.$radio-bg-checked,
+  $border-color: vars.$radio-border,
+  $dot-size: vars.$radio-dot-size
+) {
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $bg;
+  border: 2px solid $border-color;
+  transition-property: background-color, border-color, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+
+  &:hover:not(:disabled),
+  &:focus {
+    border-color: color.scale($border-color, $lightness: -10%);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($bg-checked, 0.25);
+  }
+
+  &:checked {
+    border-color: $bg-checked;
+    background-color: $bg;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $dot-size;
+    height: $dot-size;
+    background-color: $bg-checked;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:checked::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &:disabled {
+    @include form-disabled;
+  }
+}
+
+@mixin form-check-label(
+  $font-size: $fs-base,
+  $color: vars.$checkbox-label,
+  $font-family: vars.$font-form
+) {
+  cursor: pointer;
+  font-size: $font-size;
+  color: $color;
+  font-weight: 500;
+  font-family: $font-family;
+}
+
+// =================================
+//   FIELDSET
+// =================================
+
+@mixin form-fieldset(
+  $gap: $spacing-md,
+  $padding: 0,
+  $margin: 0,
+  $align-items: flex-start
+) {
+  appearance: none;
+  border: none;
+  padding: $padding;
+  margin: $margin;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: $align-items;
+  gap: $gap;
+}
+
+@mixin form-text(
+  $margin-bottom: $spacing-md,
+  $font-size: $fs-base,
+  $font-weight: 600
+) {
+  @include custom-text($font-title, $font-weight, $font-size);
+  margin-bottom: $margin-bottom;
+}

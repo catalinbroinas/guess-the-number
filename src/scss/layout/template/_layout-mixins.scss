@@ -1,0 +1,20 @@
+// =================================
+//   LAYOUT MIXINS
+// =================================
+
+// Imports
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+// Grid
+@mixin grid-fill($size: 200px, $gap: $spacing-md) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($size, 1fr));
+  gap: $gap;
+}
+
+@mixin grid-fit($size: 200px, $gap: $spacing-md) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($size, 1fr));
+  gap: $gap;
+}

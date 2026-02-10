@@ -1,0 +1,24 @@
+// =================================
+//   COMPONENTS VARIABLES
+// =================================
+
+// Imports
+@use '../../base/variables' as *;
+
+// =========== Cards ===============
+
+// Font size
+$fs-card-title: 1.35rem;
+$fs-card-subtitle: 1.1rem;
+$fs-card-text: 1rem;
+
+// Padding
+$sp-card-header: 0.75rem 1.5rem;
+$sp-card-body: 1rem 1.5rem;
+$sp-card-footer: 0.75rem 1.5rem;
+
+// Borders
+$border-card-color: rgba(0, 0, 0, 0.125);
+$border-card: 1px solid $border-card-color;
+$border-card-header: $border-card;
+$border-card-footer: $border-card;

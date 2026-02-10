@@ -1,0 +1,33 @@
+// =================================
+//   CARDS
+// =================================
+
+// Imports
+@use 'sass:color';
+@use '../../base/variables' as *;
+@use 'components-mixins' as components;
+
+// Card container
+.card {
+  @include components.card();
+}
+
+// Card image
+.card-img {
+  @include components.card-img;
+}
+
+// Card header
+.card-header {
+  @include components.card-header();
+}
+
+// Card body
+.card-body {
+  @include components.card-body();
+}
+
+// Card footer
+.card-footer {
+  @include components.card-footer();
+}

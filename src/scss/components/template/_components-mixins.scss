@@ -1,0 +1,156 @@
+// =================================
+//   COMPONENTS MIXINS
+// =================================
+
+// Imports
+@use 'sass:color';
+@use '../../base/variables' as *;
+@use './variables' as vars;
+
+// =================================
+//   BUTTONS
+// =================================
+
+@mixin button-base(
+  $bg: $bg-surface,
+  $color: $text-primary,
+  $hover-color: $color,
+  $hover-bg: color.scale($bg, $lightness: -5%)
+) {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: $bg;
+  color: $color;
+  font-size: $fs-base;
+  font-family: $font-title;
+  font-weight: 500;
+  border: none;
+  border-radius: $rounded-md;
+  transition-property: background-color, color, box-shadow;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: $hover-bg;
+    color: $hover-color;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $disabled-bg;
+    color: $disabled-text;
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}
+
+@mixin button-size(
+  $padding-y: 0.75rem,
+  $padding-x: 1.5rem,
+  $font-size: $fs-lg,
+  $border-radius: $rounded-lg
+) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+// =================================
+//   CARDS
+// =================================
+
+@mixin card(
+  $bg: $bg-surface,
+  $radius: $rounded-md,
+  $shadow: $shadow-sm,
+  $border: vars.$border-card
+) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: $bg;
+  background-clip: border-box;
+  border: $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+}
+
+@mixin card-img {
+  width: 100%;
+  display: block;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  object-fit: cover;
+}
+
+@mixin card-header(
+  $bg: $bg-page,
+  $padding: vars.$sp-card-header,
+  $border: vars.$border-card-header
+) {
+  padding: $padding;
+  background-color: $bg;
+  border-bottom: $border;
+}
+
+@mixin card-body ($padding: vars.$sp-card-body) {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: $padding;
+}
+
+@mixin card-footer(
+  $bg: $bg-section,
+  $padding: vars.$sp-card-footer,
+  $border: vars.$border-card-footer
+) {
+  padding: $padding;
+  background-color: $bg;
+  border-top: $border;
+}
+
+// =================================
+//   ALERTS
+// =================================
+
+@mixin alert(
+  $bg: $bg-page,
+  $color: $text-secondary,
+  $padding: 1rem,
+  $rounded: $rounded-md,
+  $border: none,
+  $shadow: 0 2px 4px rgba(0,0,0,0.05)
+) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: $fs-base;
+  background-color: $bg;
+  color: $color;
+  padding: $padding;
+  border-radius: $rounded;
+  border: $border;
+  box-shadow: $shadow;
+}
+
+// Specific alerts
+@mixin alert-info {
+  @include alert($info-bg, $info-text, $border: 1px solid $info-border);
+}
+
+@mixin alert-success {
+  @include alert($success-bg, $success-text, $border: 1px solid $success-border);
+}
+
+@mixin alert-warning {
+  @include alert($warning-bg, $warning-text, $border: 1px solid $warning-border);
+}
+
+@mixin alert-danger {
+  @include alert($danger-bg, $danger-text, $border: 1px solid $danger-border);
+}

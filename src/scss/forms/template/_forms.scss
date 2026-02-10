@@ -1,0 +1,200 @@
+// =================================
+//   FORMS
+// =================================
+
+// Imports
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+@use './variables' as vars;
+@use 'forms-mixins' as forms;
+
+// =================================
+//   LAYOUT
+// =================================
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: $spacing-md;
+  width: 100%;
+
+  @include media-breakpoint-down($bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-md;
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.form-outline {
+  max-width: 680px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.form-fieldset {
+  @include forms.form-fieldset();
+}
+
+// =================================
+//   TYPOGRAPHY
+// =================================
+
+.form-legend {
+  @include forms.form-text();
+}
+
+.form-label-text {
+  @include forms.form-text(0, $fs-base, 500);
+}
+
+// =================================
+//   ICON
+// =================================
+
+.form-icon {
+  display: flex;
+  align-self: center;
+  font-size: $fs-lg;
+  color: vars.$form-border;
+  transition: color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.form-row:focus-within .form-icon {
+  color: vars.$form-border-focus;
+  transform: scale(1.2);
+}
+
+// =================================
+//   INPUT FIELDS
+// =================================
+
+.form-control {
+  @include forms.form-control();
+
+  &::placeholder {
+    font-size: $fs-sm;
+    color: transparent;
+    opacity: 0;
+    transition: color 0.3s ease-in, opacity 0.3s ease-in;
+  }
+
+  &:focus::placeholder {
+    color: $text-muted;
+    opacity: 0.7;
+  }
+}
+
+.form-label {
+  @include forms.form-label(false, true);
+}
+
+.form-control:focus + .form-label,
+.form-control:not(:placeholder-shown) + .form-label {
+  @include forms.form-label(false, false);
+}
+
+.form-control.form-disabled {
+  @include forms.form-disabled;
+}
+
+.form-control-group {
+  position: relative;
+  width: 100%;
+
+  .icon {
+    position: absolute;
+    left: vars.$form-label-left;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  &:focus-within .icon {
+    opacity: 1;
+  }
+
+  .form-control {
+    @include forms.form-control(true);
+  }
+
+  .form-label {
+    @include forms.form-label(true, true);
+  }
+
+  .form-control:focus + .form-label,
+  .form-control:not(:placeholder-shown) + .form-label {
+    @include forms.form-label(true, false);
+  }
+} 
+
+// =================================
+//   CHECKBOX
+// =================================
+
+.checkbox-wrapper {
+  @include forms.checkbox-wrapper;
+}
+
+.checkbox-input {
+  @include forms.checkbox-input();
+}
+
+.checkbox-label {
+  @include forms.checkbox-label();
+}
+
+.checkbox-input:disabled + .checkbox-label {
+  @include forms.form-disabled;
+}
+
+// =================================
+//   RADIO
+// =================================
+
+.form-check {
+  @include forms.form-check;
+}
+
+.form-check-input {
+  @include forms.form-check-input();
+}
+
+.form-check-label {
+  @include forms.form-check-label();
+}
+
+.form-check-input:disabled + .form-check-label {
+  @include forms.form-disabled;
+}
+
+// =================================
+//   SELECT
+// =================================
+
+.form-select-group {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  .form-label-text { font-weight: 600 }
+}
+
+.form-select {
+  @include forms.form-select();
+}

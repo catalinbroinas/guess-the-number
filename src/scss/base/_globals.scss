@@ -1,0 +1,38 @@
+// =================================
+//   GLOBAL STYLE
+// =================================
+
+@use 'variables' as *;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: $font-text, sans-serif;
+  font-size: 16px;
+  background-color: $bg-page;
+  color: $text-primary;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid $bg-brand;
+  outline-offset: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+  color: $text-accent;
+}

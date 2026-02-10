@@ -1,0 +1,73 @@
+// =================================
+//   FORMS VARIABLES
+// =================================
+
+// Imports
+@use '../../base/variables' as *;
+
+// =================================
+//   BASE TOKENS
+// =================================
+
+// Colors
+$form-border: #607D8B;
+$form-border-focus: #455A64;
+
+// Typography
+$font-form: $font-text;
+
+// =================================
+//   COMPONENT TOKENS
+// =================================
+
+// Form control
+$form-control-border-color: $form-border;
+$form-control-border-color-focus: $form-border-focus;
+
+$form-control-padding-top: 0.75rem;
+$form-control-padding-top-alt: 0.75rem;
+
+$form-control-padding: $form-control-padding-top 1rem;
+$form-control-padding-alt: $form-control-padding-top-alt 1rem $form-control-padding-top-alt 2.5rem;
+
+// Form label
+$form-label-color: $text-secondary;
+$form-label-font-size: $fs-md;
+
+$form-label-floating-color: $text-secondary;
+$form-label-floating-font-size: $fs-sm;
+
+$form-label-left: 1rem;
+$form-label-left-alt: 2.5rem;
+
+// Select
+$form-select-border-color: $form-border;
+$form-select-border-color-focus: $form-border-focus;
+
+$form-select-padding: 0.5rem 1rem;
+
+$form-select-arrow-size: 1rem;
+$form-select-arrow-right: 1rem;
+$form-select-arrow-padding: 2.5rem;
+
+// Checkbox
+$checkbox-size: 1.5rem;
+$check-width: $checkbox-size * 0.25;
+$check-height: $checkbox-size * 0.5;
+
+$checkbox-bg: #fff;
+$checkbox-bg-checked: $form-border-focus;
+$checkbox-checkmark-color: #fff;
+
+$checkbox-border: $form-border;
+$checkbox-border-radius: $rounded-sm;
+
+$checkbox-label: $form-border-focus;
+
+// Radio
+$radio-size: 1.5rem;
+$radio-dot-size: $radio-size * 0.45;
+
+$radio-bg: #fff;
+$radio-bg-checked: $form-border-focus;
+$radio-border: $form-border;

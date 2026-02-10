@@ -1,0 +1,25 @@
+// =================================
+//   ALERTS
+// =================================
+
+// Imports
+@use 'sass:color';
+@use '../../base/variables' as *;
+@use 'components-mixins' as components;
+
+// Info alert
+.alert-info {
+  @include components.alert-info();
+}
+
+.alert-success {
+  @include components.alert-success();
+}
+
+.alert-warning {
+  @include components.alert-warning();
+}
+
+.alert-danger {
+  @include components.alert-danger();
+}

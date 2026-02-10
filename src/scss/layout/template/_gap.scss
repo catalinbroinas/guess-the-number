@@ -1,0 +1,32 @@
+// =================================
+//   GAP UTILITIES
+// =================================
+
+// Imports
+@use 'sass:map';
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+// =================================
+//   CLASSES
+// =================================
+
+$gap-utilities: (
+  (gap, gap, $gap-map),
+  (gap-x, row-gap, $gap-map),
+  (gap-y, column-gap, $gap-map),
+);
+
+@each $prefix, $property, $map in $gap-utilities {
+  @each $size in map.keys($map) {
+    .#{$prefix}-#{$size} {
+      @include spacing($map, $property, $size);
+    }
+
+    @each $bp in map.keys($breakpoints) {
+      .#{$prefix}-#{$bp}-#{$size} {
+        @include spacing($map, $property, $size, $bp);
+      }
+    }
+  }
+}

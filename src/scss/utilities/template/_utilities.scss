@@ -1,0 +1,74 @@
+// =================================
+//   UTILITIES
+// =================================
+
+// Imports
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+// =================================
+//   TEXT
+// =================================
+
+// Alignments
+.text-start   { text-align: left; }
+.text-center  { text-align: center; }
+.text-end     { text-align: right; }
+
+// Transforms
+.text-uppercase   { text-transform: uppercase; }
+.text-capitalize  { text-transform: capitalize; }
+
+// Weights
+.fw-bolder  { font-weight: 700; }
+.fw-bold    { font-weight: 600; }
+.fw-medium  { font-weight: 500; }
+.fw-normal  { font-weight: 400; }
+
+// Sizes
+.fs-sm  { font-size: $fs-sm; line-height: 1.5; }
+.fs-md  { font-size: $fs-md; line-height: 1.6; }
+.fs-lg  { font-size: $fs-lg; line-height: 1.5; }
+
+// Colors
+.text-primary   { color: $text-primary; }
+.text-secondary { color: $text-secondary; }
+.text-accent    { color: $text-accent; }
+.text-muted     { color: $text-muted; }
+.text-inverse,
+.text-light     { color: $text-inverse; }
+
+// =================================
+//   VISIBILITY
+// =================================
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// =================================
+//   SIZING
+// =================================
+
+.vw-100 { width: 100vw; }
+.vh-100 { height: 100vh; }
+
+.w-50   { width: 50%; }
+.w-100  { width: 100%; }
+
+.h-100  { height: 100%; }
+
+// =================================
+//   BACKGROUNDS
+// =================================
+.bg-brand   { background-color: $bg-brand; }
+.bg-accent  { background-color: $bg-accent; }
+.bg-surface { background-color: $bg-surface; }
+.bg-page    { background-color: $bg-page; }

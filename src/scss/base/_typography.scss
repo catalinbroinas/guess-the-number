@@ -1,0 +1,42 @@
+// =================================
+//   TYPOGRAPHY
+// =================================
+
+// Imports
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ======= Base Typography =======
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-title, sans-serif;
+  color: $text-primary;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; font-weight: 700; }
+h2 { font-size: 2rem; font-weight: 600; }
+h3 { font-size: 1.75rem; font-weight: 500; }
+h4 { font-size: 1.5rem; font-weight: 500; }
+h5 { font-size: 1.25rem; font-weight: 500; }
+h6 { font-size: 1rem; font-weight: 500; }
+
+p {
+  margin-bottom: 1rem;
+  color: $text-secondary;
+  font-family: $font-text, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+// ======= Utility Typography classes =======
+
+.page-title { @include page-title(); }
+.title { @include title(); }
+.subtitle { @include subtitle(); }
+.text { @include text(); }
+.text-muted { @include text-muted(); }
+.lead { @include lead(); }
+.small-text { @include small-text(); }
+.footer-text { @include footer-text(); }

@@ -1,0 +1,29 @@
+// =================================
+//   BORDERS
+// =================================
+
+// Imports
+@use 'sass:map';
+@use '../../base/variables' as *;
+@use '../../base/mixins' as *;
+
+// Border
+.border-0 { border: none; }
+
+// Border radius
+.rounded-xs   { border-radius: $rounded-xs; }
+.rounded-sm   { border-radius: $rounded-sm; }
+.rounded-md   { border-radius: $rounded-md; }
+.rounded-lg   { border-radius: $rounded-lg; }
+.rounded-xl   { border-radius: $rounded-xl; }
+.rounded-xxl  { border-radius: $rounded-xxl; }
+
+.rounded-pill   { border-radius: 50rem; }
+.rounded-circle { border-radius: 50%; }
+
+// Border radius
+@each $key, $radius in $rounded-map {
+  .rounded-#{$key} {
+    border-radius: $radius;
+  }
+}
