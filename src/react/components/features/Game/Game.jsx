@@ -1,5 +1,6 @@
 import GameSettings from "./GameSettings";
 import GuessInput from "./GuessInput";
+import Feedback from "./Feedback";
 
 function Game() {
   return (
@@ -10,6 +11,7 @@ function Game() {
         <GameSettings />
       </div>
       <GuessInput />
+      <Feedback />
     </div>
   );
 }
