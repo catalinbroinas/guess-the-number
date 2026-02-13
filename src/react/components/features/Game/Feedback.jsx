@@ -1,9 +1,7 @@
 
-function Feedback() {
+function Feedback({ message }) {
   return (
-    <p className="text">
-      Correct!
-    </p>
+    <p className="text">{message}</p>
   );
 }
 
