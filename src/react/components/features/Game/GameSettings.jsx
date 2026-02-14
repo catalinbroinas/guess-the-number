@@ -29,7 +29,9 @@ function GameSettings({ onApply }) {
               id="min-range"
               type="number"
               className="form-control"
-              placeholder="1"
+              placeholder="0"
+              min="0"
+              max="99"
               value={localRange.min}
               onChange={(e) => setLocalRange(prev => ({
                 ...prev,
@@ -46,7 +48,9 @@ function GameSettings({ onApply }) {
               id="max-range"
               type="number"
               className="form-control"
-              placeholder="10"
+              placeholder="100"
+              min="1"
+              max="100"
               value={localRange.max}
               onChange={(e) => setLocalRange(prev => ({
                 ...prev,
