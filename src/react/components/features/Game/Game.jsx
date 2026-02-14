@@ -6,6 +6,13 @@ import Feedback from "./Feedback";
 import GameControls from "./GameControls";
 
 function Game() {
+  // Date
+  const GAME_STATUS = {
+    idle: 'idle',
+    playing: 'playing',
+    end: 'end'
+  };
+
   // State
   const [numberRange, setNumberRange] = useState({
     min: null,
@@ -13,19 +20,19 @@ function Game() {
   });
   const [secretNumber, setSecretNumber] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  const [gameStatus, setGameStatus] = useState("idle");
+  const [gameStatus, setGameStatus] = useState(GAME_STATUS.idle);
 
   const handleApplyRange = (range) => {
     setNumberRange(range);
     setSecretNumber(randomInt(range.min, range.max));
     setFeedbackMessage("");
-    setGameStatus('playing');
+    setGameStatus(GAME_STATUS.playing);
   };
 
   const handleGuess = (guess) => {
     if (guess === secretNumber) {
       setFeedbackMessage('Success!');
-      setGameStatus("won");
+      setGameStatus(GAME_STATUS.end);
     } else {
       guess > secretNumber 
         ? setFeedbackMessage('Too high.')
@@ -34,7 +41,7 @@ function Game() {
   };
 
   const handleResetGame = () => {
-    setGameStatus('idle');
+    setGameStatus(GAME_STATUS.idle);
     setNumberRange({...numberRange, min: null, max: null});
     setSecretNumber(null);
     setFeedbackMessage('');
@@ -46,13 +53,15 @@ function Game() {
 
       <Feedback message={feedbackMessage} />
 
-      {gameStatus === 'idle' && (
+      {gameStatus === GAME_STATUS.idle && (
         <GameSettings onApply={handleApplyRange} />
       )}
-      {gameStatus === 'playing' && (
+      
+      {gameStatus === GAME_STATUS.playing && (
         <GuessInput numberRange={numberRange} onGuess={handleGuess} />
       )}
-      {gameStatus === 'won' && (
+
+      {gameStatus === GAME_STATUS.end && (
         <GameControls onReset={handleResetGame} />
       )}
     </div>
