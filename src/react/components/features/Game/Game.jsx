@@ -3,6 +3,7 @@ import GameSettings from "./GameSettings";
 import GuessInput from "./GuessInput";
 import { randomInt } from "../../../../js/utils/numberUtils";
 import Feedback from "./Feedback";
+import GameControls from "./GameControls";
 
 function Game() {
   // State
@@ -32,17 +33,27 @@ function Game() {
     }
   };
 
+  const handleResetGame = () => {
+    setGameStatus('idle');
+    setNumberRange({...numberRange, min: null, max: null});
+    setSecretNumber(null);
+    setFeedbackMessage('');
+  };
+
   return (
     <div className="game">
       <h1 className="game__title">Guess the number</h1>
 
       <Feedback message={feedbackMessage} />
-      
+
       {gameStatus === 'idle' && (
         <GameSettings onApply={handleApplyRange} />
       )}
       {gameStatus === 'playing' && (
         <GuessInput onGuess={handleGuess} />
+      )}
+      {gameStatus === 'won' && (
+        <GameControls onReset={handleResetGame} />
       )}
     </div>
   );
