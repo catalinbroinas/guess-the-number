@@ -50,7 +50,7 @@ function Game() {
         <GameSettings onApply={handleApplyRange} />
       )}
       {gameStatus === 'playing' && (
-        <GuessInput onGuess={handleGuess} />
+        <GuessInput numberRange={numberRange} onGuess={handleGuess} />
       )}
       {gameStatus === 'won' && (
         <GameControls onReset={handleResetGame} />
