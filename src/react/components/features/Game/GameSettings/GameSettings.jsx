@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NumberRange from "./NumberRange";
+import PlayerName from "./PlayerName";
 
 function GameSettings({ onApply }) {
   const [settings, setSettings] = useState({
@@ -25,25 +26,7 @@ function GameSettings({ onApply }) {
         onRangeChange={(range) => setSettings(prev => ({...prev, ...range}))}
       />
 
-      <fieldset className="form-fieldset">
-        <legend className="form-legend mb-4">
-          <span className="fs-lg">Set player name (optional)</span>
-        </legend>
-
-        <div className="form-row">
-          <div className="form-outline">
-            <input
-              id="player-name"
-              type="text"
-              className="form-control"
-              placeholder="John"
-            />
-            <label htmlFor="player-name" className="form-label">
-              Name
-            </label>
-          </div>
-        </div>
-      </fieldset>
+      <PlayerName />
 
       <button
         className="btn btn-primary"
