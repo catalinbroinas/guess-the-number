@@ -5,7 +5,8 @@ import PlayerName from "./PlayerName";
 function GameSettings({ onApply }) {
   const [settings, setSettings] = useState({
     min: '',
-    max: ''
+    max: '',
+    playerName: ''
   });
 
   return (
@@ -16,7 +17,8 @@ function GameSettings({ onApply }) {
         onApply({
           ...settings,
           min: Number(settings.min),
-          max: Number(settings.max)
+          max: Number(settings.max),
+          playerName: settings.playerName.trim()
         });
       }}
     >
@@ -26,7 +28,10 @@ function GameSettings({ onApply }) {
         onRangeChange={(range) => setSettings(prev => ({...prev, ...range}))}
       />
 
-      <PlayerName />
+     <PlayerName
+        name ={settings.playerName}
+        onNameChange={(name) => setSettings(prev => ({...prev, ...name}))}
+      />
 
       <button
         className="btn btn-primary"

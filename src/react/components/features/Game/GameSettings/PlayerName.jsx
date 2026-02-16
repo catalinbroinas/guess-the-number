@@ -1,5 +1,5 @@
 
-function PlayerName() {
+function PlayerName({ name, onNameChange }) {
   return (
     <fieldset className="form-fieldset">
       <legend className="form-legend mb-4">
@@ -13,6 +13,8 @@ function PlayerName() {
             type="text"
             className="form-control"
             placeholder="John"
+            value={name}
+            onChange={(e) => onNameChange({ name: e.target.value })}
           />
           <label htmlFor="player-name" className="form-label">
             Name
