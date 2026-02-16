@@ -20,24 +20,38 @@ function Game() {
   };
 
   // State
-  const [numberRange, setNumberRange] = useState({
+  const [settings, setSettings] = useState({
     min: null,
-    max: null
+    max: null,
+    playerName: ''
   });
   const [secretNumber, setSecretNumber] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.idle);
 
-  const handleApplyRange = (range) => {
-    setNumberRange(range);
-    setSecretNumber(randomInt(range.min, range.max));
-    setFeedbackMessage(FEEDBACK_MESSAGES.start(range.min, range.max));
+  const handleApplyRange = (newSettings) => {
+    const min = newSettings.min;
+    const max = newSettings.max;
+    const playerName = newSettings.playerName;
+    const feedback = FEEDBACK_MESSAGES.start(newSettings.min, newSettings.max);
+    
+    setSettings(newSettings);
+    setSecretNumber(randomInt(min, max));
     setGameStatus(GAME_STATUS.playing);
+
+    playerName 
+      ? setFeedbackMessage(`Hello, ${playerName}. ${feedback}`)
+      : setFeedbackMessage(feedback);
   };
 
   const handleGuess = (guess) => {
     if (guess === secretNumber) {
-      setFeedbackMessage(FEEDBACK_MESSAGES.success(guess));
+      settings.playerName
+        ? setFeedbackMessage(`
+          Congratulation, ${settings.playerName}! The number was ${guess}.
+        `)
+        : setFeedbackMessage(FEEDBACK_MESSAGES.success(guess));
+
       setGameStatus(GAME_STATUS.end);
     } else {
       guess > secretNumber 
@@ -48,7 +62,7 @@ function Game() {
 
   const handleResetGame = () => {
     setGameStatus(GAME_STATUS.idle);
-    setNumberRange({...numberRange, min: null, max: null});
+    setSettings({...settings, min: null, max: null, playerName: ''});
     setSecretNumber(null);
     setFeedbackMessage('');
   };
@@ -64,7 +78,7 @@ function Game() {
       )}
 
       {gameStatus === GAME_STATUS.playing && (
-        <GuessInput numberRange={numberRange} onGuess={handleGuess} />
+        <GuessInput numberRange={settings} onGuess={handleGuess} />
       )}
 
       {gameStatus === GAME_STATUS.end && (
