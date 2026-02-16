@@ -1,5 +1,5 @@
 import { useState } from "react";
-import GameSettings from "./GameSettings";
+import GameSettings from "./GameSettings/GameSettings";
 import GuessInput from "./GuessInput";
 import { randomInt } from "../../../../js/utils/numberUtils";
 import Feedback from "./Feedback";
