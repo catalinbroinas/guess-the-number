@@ -61,17 +61,37 @@ function GameSettings({ onApply }) {
               Max
             </label>
           </div>
-
-          <button
-            className="btn btn-primary"
-            disabled={
-              localRange.min === "" ||
-              localRange.max === "" ||
-              (Number(localRange.min) >= Number(localRange.max))
-            }
-          >Apply</button>
         </div>
       </fieldset>
+
+      <fieldset className="form-fieldset">
+        <legend className="form-legend mb-4">
+          <span className="fs-lg">Set player name (optional)</span>
+        </legend>
+
+        <div className="form-row">
+          <div className="form-outline">
+            <input
+              id="player-name"
+              type="text"
+              className="form-control"
+              placeholder="John"
+            />
+            <label htmlFor="player-name" className="form-label">
+              Name
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <button
+        className="btn btn-primary"
+        disabled={
+          localRange.min === "" ||
+          localRange.max === "" ||
+          (Number(localRange.min) >= Number(localRange.max))
+        }
+      >Apply</button>
     </form>
   );
 }
