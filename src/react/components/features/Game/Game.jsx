@@ -13,9 +13,8 @@ function Game() {
     end: 'end'
   };
   const FEEDBACK_MESSAGES = {
-    start: (min, max) => `Enter a number between ${min} and ${max}.`,
-    tooLow: (number) => `Number ${number} is too small. Try a larger number.`,
-    tooHigh: (number) => `Number ${number} is too high. Try a smaller number.`,
+    tooLow: (number) => `Number ${number} is too small.`,
+    tooHigh: (number) => `Number ${number} is too high.`,
     success: (number) => `Correct! The number was ${number}.`,
   };
 
@@ -30,28 +29,16 @@ function Game() {
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.idle);
 
   const handleApplyRange = (newSettings) => {
-    const min = newSettings.min;
-    const max = newSettings.max;
-    const playerName = newSettings.playerName;
-    const feedback = FEEDBACK_MESSAGES.start(newSettings.min, newSettings.max);
+    const { min, max } = newSettings;
     
     setSettings(newSettings);
     setSecretNumber(randomInt(min, max));
     setGameStatus(GAME_STATUS.playing);
-
-    playerName 
-      ? setFeedbackMessage(`Hello, ${playerName}. ${feedback}`)
-      : setFeedbackMessage(feedback);
   };
 
   const handleGuess = (guess) => {
     if (guess === secretNumber) {
-      settings.playerName
-        ? setFeedbackMessage(`
-          Congratulation, ${settings.playerName}! The number was ${guess}.
-        `)
-        : setFeedbackMessage(FEEDBACK_MESSAGES.success(guess));
-
+      setFeedbackMessage(FEEDBACK_MESSAGES.success(guess));
       setGameStatus(GAME_STATUS.end);
     } else {
       guess > secretNumber 
