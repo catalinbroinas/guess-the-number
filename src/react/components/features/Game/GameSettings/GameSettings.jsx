@@ -28,10 +28,18 @@ function GameSettings({ onApply }) {
         onRangeChange={(range) => setSettings(prev => ({...prev, ...range}))}
       />
 
-     <PlayerName
-        name ={settings.playerName}
-        onNameChange={(value) => setSettings(prev => ({ ...prev, playerName: value }))}
-      />
+      <fieldset className="form-fieldset">
+        <legend className="form-legend mb-4">
+          <span className="fs-lg">Other options (optional)</span>
+        </legend>
+
+        <div className="form-row">
+          <PlayerName
+            name ={settings.playerName}
+            onNameChange={(value) => setSettings(prev => ({ ...prev, playerName: value }))}
+          />
+        </div>
+      </fieldset>
 
       <button
         className="btn btn-primary"
