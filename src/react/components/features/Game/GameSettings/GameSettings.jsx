@@ -21,7 +21,9 @@ function GameSettings({ onApply }) {
           min: Number(settings.min),
           max: Number(settings.max),
           playerName: settings.playerName.trim(),
-          attempts: Number(settings.attempts)
+          attempts: settings.attempts === ''
+            ? null
+            : Number(settings.attempts)
         });
       }}
     >
