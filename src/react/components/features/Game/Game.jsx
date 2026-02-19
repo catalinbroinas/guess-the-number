@@ -36,13 +36,26 @@ function Game() {
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.idle);
   const [gameResult, setGameResult] = useState(null);
+  const [currentPlayer, setCurrentPlayer] = useState(settings.player1Name);
+
+  const handleCurrentPlayer = () => {
+    setCurrentPlayer(prev => (
+      prev === settings.player1Name
+        ? settings.player2Name
+        : settings.player1Name
+    ));
+  };
 
   const handleApplyRange = (newSettings) => {
-    const { min, max } = newSettings;
+    const { min, max, mode, player1Name } = newSettings;
     
     setSettings(newSettings);
     setSecretNumber(randomInt(min, max));
     setGameStatus(GAME_STATUS.playing);
+
+    if (mode === 'multi') {
+      setCurrentPlayer(player1Name);
+    }
   };
 
   const handleGuess = (guess) => {
@@ -66,6 +79,10 @@ function Game() {
       return;
     }
 
+    if (settings.mode !== 'single') {
+      handleCurrentPlayer();
+    }
+
     guess > secretNumber 
       ? setFeedbackMessage(FEEDBACK_MESSAGES.tooHigh(guess))
       : setFeedbackMessage(FEEDBACK_MESSAGES.tooLow(guess));
@@ -77,10 +94,12 @@ function Game() {
       ...settings,
       min: null,
       max: null,
+      mode: 'single',
       player1Name: '',
       player2Name: '',
       attempts: null});
     setSecretNumber(null);
+    setCurrentPlayer('');
     setFeedbackMessage('');
   };
 
@@ -94,7 +113,10 @@ function Game() {
 
       {gameStatus === GAME_STATUS.playing && (
         <>
-          <GameInfo settings={settings} />
+          <GameInfo
+            settings={settings}
+            currentPlayer={settings.mode !== 'single' ? currentPlayer : ''}
+          />
 
           <Feedback message={feedbackMessage} />
 
@@ -108,7 +130,7 @@ function Game() {
       {gameStatus === GAME_STATUS.end && (
         <>
           <GameResult
-            playerName={settings.player1Name}
+            playerName={currentPlayer}
             result={gameResult}
           />
           

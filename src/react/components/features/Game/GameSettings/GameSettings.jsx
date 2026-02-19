@@ -23,6 +23,7 @@ function GameSettings({ onApply }) {
           ...settings,
           min: Number(settings.min),
           max: Number(settings.max),
+          mode: settings.mode,
           player1Name: settings.player1Name.trim(),
           player2Name: settings.player2Name.trim(),
           attempts: settings.attempts === ''
