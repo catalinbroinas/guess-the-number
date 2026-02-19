@@ -8,6 +8,7 @@ function GameSettings({ onApply }) {
   const [settings, setSettings] = useState({
     min: '',
     max: '',
+    mode: 'single',
     playerName: '',
     attempts: ''
   });
@@ -40,7 +41,10 @@ function GameSettings({ onApply }) {
         </legend>
 
         <div className="form-row mb-4">
-          <GameMode />
+          <GameMode 
+            gameMode={settings.mode}
+            onGameModeChange={(value) => setSettings(prev => ({ ...prev, mode: value }))}
+          />
         </div>
 
         <div className="form-row">
@@ -49,10 +53,17 @@ function GameSettings({ onApply }) {
             onNameChange={(value) => setSettings(prev => ({ ...prev, playerName: value }))}
           />
 
-          <AttemptsInput
-            attempts={settings.attempts}
-            onAttemptsChange={(value) => setSettings(prev => ({ ...prev, attempts: value }))}
-          />
+          {settings.mode === 'single' ? (
+            <AttemptsInput
+              attempts={settings.attempts}
+              onAttemptsChange={(value) => setSettings(prev => ({ ...prev, attempts: value }))}
+            />
+          ) : (
+            <PlayerName
+              name ={settings.playerName}
+              onNameChange={(value) => setSettings(prev => ({ ...prev, playerName: value }))}
+            />
+          )}
         </div>
       </fieldset>
 
