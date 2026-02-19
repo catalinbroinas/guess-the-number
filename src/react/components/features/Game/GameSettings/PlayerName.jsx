@@ -1,17 +1,27 @@
+import { useId } from "react";
 
-function PlayerName({ name, onNameChange }) {
+function PlayerName({
+  name,
+  onNameChange,
+  label = 'Name',
+  placeholder = 'John',
+  id
+}) {
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+
   return (
     <div className="form-outline">
       <input
-        id="player-name"
+        id={inputId}
         type="text"
         className="form-control"
-        placeholder="John"
+        placeholder={placeholder}
         value={name}
         onChange={(e) => onNameChange(e.target.value)}
       />
-      <label htmlFor="player-name" className="form-label">
-        Name
+      <label htmlFor={inputId} className="form-label">
+        {label}
       </label>
     </div>
   );
