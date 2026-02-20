@@ -36,7 +36,7 @@ function Game() {
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.idle);
   const [gameResult, setGameResult] = useState(null);
-  const [currentPlayer, setCurrentPlayer] = useState(settings.player1Name);
+  const [currentPlayer, setCurrentPlayer] = useState(null);
 
   const handleCurrentPlayer = () => {
     setCurrentPlayer(prev => (
@@ -47,15 +47,23 @@ function Game() {
   };
 
   const handleApplyRange = (newSettings) => {
-    const { min, max, mode, player1Name } = newSettings;
+    const normalizeSettings = {
+      ...newSettings,
+      player1Name:
+        newSettings.mode === 'multi'
+          ? newSettings.player1Name || 'Player 1'
+          : newSettings.player1Name,
+      player2Name:
+        newSettings.mode === 'multi'
+          ? newSettings.player2Name || 'Player 2'
+          : ''
+    };
+    const { min, max, player1Name } = normalizeSettings;
     
-    setSettings(newSettings);
+    setSettings(normalizeSettings);
     setSecretNumber(randomInt(min, max));
     setGameStatus(GAME_STATUS.playing);
-
-    if (mode === 'multi') {
-      setCurrentPlayer(player1Name);
-    }
+    setCurrentPlayer(player1Name);
   };
 
   const handleGuess = (guess) => {
