@@ -122,7 +122,7 @@ function Game() {
     setSecretNumber(randomInt(min, max));
     setCurrentPlayer(player1Name);
     setFeedbackMessage('');
-    setGameStatus(GAME_STATUS.idle);
+    setGameStatus(GAME_STATUS.playing);
   };
 
   return (
