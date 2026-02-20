@@ -2,7 +2,7 @@
 function GameControls({ onReset, onPlayAgain }) {
   return (
     <div className="game__controls">
-      <button className="btn btn-primary" onClick={onReset}>
+      <button className="btn btn-primary-outline" onClick={onReset}>
         Reset
       </button>
       <button className="btn btn-primary" onClick={onPlayAgain}>
