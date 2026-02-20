@@ -1,6 +1,6 @@
 
 function GameInfo({ settings, currentPlayer }) {
-  const { min, max, player1Name, attempts } = settings;
+  const { min, max, player1Name, leftAttempts } = settings;
 
   return (
     <div className="game__info">
@@ -11,7 +11,7 @@ function GameInfo({ settings, currentPlayer }) {
           player1Name && <>Hello, {player1Name}!<br /></>
         )}
         Range: {min} - {max}. <br />
-        Attempts left: {attempts ?? 'Unlimited'}
+        Attempts left: {leftAttempts ?? 'Unlimited'}
       </p>
     </div>
   );

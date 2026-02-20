@@ -30,7 +30,8 @@ function Game() {
     mode: 'single',
     player1Name: '',
     player2Name: '',
-    attempts: null
+    attempts: null,
+    leftAttempts: null,
   });
   const [secretNumber, setSecretNumber] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState('');
@@ -56,7 +57,8 @@ function Game() {
       player2Name:
         newSettings.mode === 'multi'
           ? newSettings.player2Name || 'Player 2'
-          : ''
+          : '',
+      leftAttempts: newSettings.attempts || null
     };
     const { min, max, player1Name } = normalizeSettings;
     
@@ -67,11 +69,11 @@ function Game() {
   };
 
   const handleGuess = (guess) => {
-    const nextAttempts = settings.attempts !== null 
-      ? settings.attempts - 1
+    const nextAttempts = settings.leftAttempts !== null 
+      ? settings.leftAttempts - 1
       : null;
     if (nextAttempts !== null) {
-      setSettings({ ...settings, attempts: nextAttempts })
+      setSettings({ ...settings, leftAttempts: nextAttempts })
     }
 
     if (guess === secretNumber) {
@@ -105,7 +107,9 @@ function Game() {
       mode: 'single',
       player1Name: '',
       player2Name: '',
-      attempts: null});
+      attempts: null,
+      leftAttempts: null
+    });
     setSecretNumber(null);
     setCurrentPlayer('');
     setFeedbackMessage('');
@@ -114,9 +118,7 @@ function Game() {
   const handlePlayAgain = () => {
     const { min, max, player1Name } = settings;
 
-    // Initial option
-    setSettings({ ...settings, attempts: null});
-
+    setSettings({ ...settings, leftAttempts: settings.attempts});
     setSecretNumber(randomInt(min, max));
     setCurrentPlayer(player1Name);
     setFeedbackMessage('');
