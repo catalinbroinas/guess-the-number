@@ -27,6 +27,7 @@
 
   @include media-breakpoint-down($bp-sm) {
     flex-direction: column;
+    gap: $spacing-lg;
   }
 }
 
