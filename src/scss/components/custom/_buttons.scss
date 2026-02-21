@@ -20,6 +20,12 @@
   &:active {
     box-shadow: 0 4px 12px rgba($color: $bg-brand, $alpha: 0.5);
   }
+
+  &:disabled,
+  &.disabled {
+    box-shadow: none;
+    &:hover { box-shadow: none; }
+  }
 }
 
 .btn-primary-outline {
