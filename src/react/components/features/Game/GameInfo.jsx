@@ -4,7 +4,7 @@ function GameInfo({ settings, currentPlayer }) {
 
   return (
     <ul className="game__info shadow-1">
-      <li className="game__info-item">
+      {(currentPlayer || player1Name) && (<li className="game__info-item">
         {currentPlayer && (
           <>
             <strong className="game__info-label">Player turn:</strong> {currentPlayer}
@@ -16,7 +16,7 @@ function GameInfo({ settings, currentPlayer }) {
             <strong className="game__info-label">Player:</strong> {player1Name}
           </>
         )}
-      </li>
+      </li>)}
 
       <li className="game__info-item">
         <strong className="game__info-label">Range:</strong> {min} - {max}
