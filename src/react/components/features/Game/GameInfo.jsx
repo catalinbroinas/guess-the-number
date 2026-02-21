@@ -3,17 +3,29 @@ function GameInfo({ settings, currentPlayer }) {
   const { min, max, player1Name, leftAttempts } = settings;
 
   return (
-    <div className="game__info">
-      <p className="text">
-        {currentPlayer ? (
-          <>Player turn: {currentPlayer}<br /></>
-        ) : (
-          player1Name && <>Player: {player1Name}<br /></>
+    <ul className="game__info shadow-1">
+      <li className="game__info-item">
+        {currentPlayer && (
+          <>
+            <strong className="game__info-label">Player turn:</strong> {currentPlayer}
+          </>
         )}
-        Range: {min} - {max}. <br />
-        Attempts left: {leftAttempts ?? 'Unlimited'}
-      </p>
-    </div>
+
+        {!currentPlayer && player1Name && (
+          <>
+            <strong className="game__info-label">Player:</strong> {player1Name}
+          </>
+        )}
+      </li>
+
+      <li className="game__info-item">
+        <strong className="game__info-label">Range:</strong> {min} - {max}
+      </li>
+
+      <li className="game__info-item">
+        <strong className="game__info-label">Attempts left:</strong> {leftAttempts ?? 'Unlimited'}
+      </li>
+    </ul>
   );
 }
 
