@@ -30,4 +30,25 @@
     gap: 1.5rem;
     padding: 1rem;
   }
+
+  &__info {
+    background-color: $bg-surface;
+    border-left: 2px solid $bg-brand;
+    border-top-right-radius: $rounded-lg;
+    border-bottom-right-radius: $rounded-lg;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__info-item {
+    &:not(:last-child) {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  &__info-label {
+    font-weight: 600;
+    color: $text-accent;
+    margin-right: 1rem;
+  }
 }
