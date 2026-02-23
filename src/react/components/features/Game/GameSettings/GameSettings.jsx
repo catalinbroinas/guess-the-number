@@ -3,17 +3,13 @@ import NumberRange from "./NumberRange";
 import PlayerName from "./PlayerName";
 import AttemptsInput from "./AttemptsInput";
 import GameMode from "./GameMode";
-import { GAME_MODE } from "../../../../constants/game.constants";
+import {
+  GAME_MODE,
+  DEFAULT_GAME_SETTINGS_FORM
+} from "../../../../constants/game.constants";
 
 function GameSettings({ onApply }) {
-  const [settings, setSettings] = useState({
-    min: '',
-    max: '',
-    mode: GAME_MODE.single,
-    player1Name: '',
-    player2Name: '',
-    attempts: ''
-  });
+  const [settings, setSettings] = useState(DEFAULT_GAME_SETTINGS_FORM);
 
   return (
     <form 

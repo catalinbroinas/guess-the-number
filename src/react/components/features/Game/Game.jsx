@@ -10,20 +10,13 @@ import {
   GAME_MODE,
   GAME_STATUS,
   GAME_RESULT,
+  DEFAULT_SETTINGS,
   FEEDBACK_MESSAGES
 }from "../../../constants/game.constants";
 
 function Game() {
   // State
-  const [settings, setSettings] = useState({
-    min: null,
-    max: null,
-    mode: GAME_MODE.single,
-    player1Name: '',
-    player2Name: '',
-    attempts: null,
-    leftAttempts: null,
-  });
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [secretNumber, setSecretNumber] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [gameStatus, setGameStatus] = useState(GAME_STATUS.idle);
@@ -91,16 +84,7 @@ function Game() {
 
   const handleResetGame = () => {
     setGameStatus(GAME_STATUS.idle);
-    setSettings({
-      ...settings,
-      min: null,
-      max: null,
-      mode: GAME_MODE.single,
-      player1Name: '',
-      player2Name: '',
-      attempts: null,
-      leftAttempts: null
-    });
+    setSettings(DEFAULT_SETTINGS);
     setSecretNumber(null);
     setCurrentPlayer('');
     setFeedbackMessage('');
