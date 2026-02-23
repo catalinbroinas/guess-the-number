@@ -6,23 +6,13 @@ import Feedback from "./Feedback";
 import GameControls from "./GameControls";
 import GameInfo from "./GameInfo";
 import GameResult from "./GameResult";
+import {
+  GAME_STATUS,
+  GAME_RESULT,
+  FEEDBACK_MESSAGES
+}from "../../../constants/game.constants";
 
 function Game() {
-  // Date
-  const GAME_STATUS = {
-    idle: 'idle',
-    playing: 'playing',
-    end: 'end'
-  };
-  const GAME_RESULT = {
-    won: 'won',
-    lost: 'lost'
-  };
-  const FEEDBACK_MESSAGES = {
-    tooLow: (number) => `Number ${number} is too small.`,
-    tooHigh: (number) => `Number ${number} is too high.`,
-  };
-
   // State
   const [settings, setSettings] = useState({
     min: null,
