@@ -31,7 +31,7 @@ function Game() {
     ));
   };
 
-  const handleApplyRange = (newSettings) => {
+  const handleApplySettings = (newSettings) => {
     const normalizeSettings = {
       ...newSettings,
       player1Name:
@@ -105,7 +105,7 @@ function Game() {
       <h1 className="game__title">Guess the number</h1>
 
       {gameStatus === GAME_STATUS.idle && (
-        <GameSettings onApply={handleApplyRange} />
+        <GameSettings onApply={handleApplySettings} />
       )}
 
       {gameStatus === GAME_STATUS.playing && (
