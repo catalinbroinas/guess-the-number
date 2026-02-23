@@ -1,11 +1,15 @@
+import { GAME_RESULT } from "../../../constants/game.constants";
 
 function GameResult({ result, playerName }) {
-  const typeMessage = result === 'won' ? 'success' : 'danger';
-  const message = result === 'won' ? 'Congratulation' : 'You lost';
+  const alertResult = {
+    type: result === GAME_RESULT.won ? 'success' : 'danger',
+    message: result === GAME_RESULT.won ? 'Congratulation' : 'You lost'
+  };
+
   return (
     <div className="game__result">
-      <p className={`alert-${typeMessage}`}>
-        {message}{playerName && `, ${playerName}`}!
+      <p className={`alert-${alertResult.type}`}>
+        {alertResult.message}{playerName && `, ${playerName}`}!
       </p>
     </div>
   );
