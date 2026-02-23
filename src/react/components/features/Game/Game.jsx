@@ -7,6 +7,7 @@ import GameControls from "./GameControls";
 import GameInfo from "./GameInfo";
 import GameResult from "./GameResult";
 import {
+  GAME_MODE,
   GAME_STATUS,
   GAME_RESULT,
   FEEDBACK_MESSAGES
@@ -17,7 +18,7 @@ function Game() {
   const [settings, setSettings] = useState({
     min: null,
     max: null,
-    mode: 'single',
+    mode: GAME_MODE.single,
     player1Name: '',
     player2Name: '',
     attempts: null,
@@ -41,11 +42,11 @@ function Game() {
     const normalizeSettings = {
       ...newSettings,
       player1Name:
-        newSettings.mode === 'multi'
+        newSettings.mode === GAME_MODE.multi
           ? newSettings.player1Name || 'Player 1'
           : newSettings.player1Name,
       player2Name:
-        newSettings.mode === 'multi'
+        newSettings.mode === GAME_MODE.multi
           ? newSettings.player2Name || 'Player 2'
           : '',
       leftAttempts: newSettings.attempts || null
@@ -79,7 +80,7 @@ function Game() {
       return;
     }
 
-    if (settings.mode !== 'single') {
+    if (settings.mode === GAME_MODE.multi) {
       handleCurrentPlayer();
     }
 
@@ -94,7 +95,7 @@ function Game() {
       ...settings,
       min: null,
       max: null,
-      mode: 'single',
+      mode: GAME_MODE.single,
       player1Name: '',
       player2Name: '',
       attempts: null,
@@ -127,7 +128,7 @@ function Game() {
         <>
           <GameInfo
             settings={settings}
-            currentPlayer={settings.mode !== 'single' ? currentPlayer : ''}
+            currentPlayer={settings.mode === GAME_MODE.multi ? currentPlayer : ''}
           />
 
           <Feedback message={feedbackMessage} />

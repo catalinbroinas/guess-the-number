@@ -3,12 +3,13 @@ import NumberRange from "./NumberRange";
 import PlayerName from "./PlayerName";
 import AttemptsInput from "./AttemptsInput";
 import GameMode from "./GameMode";
+import { GAME_MODE } from "../../../../constants/game.constants";
 
 function GameSettings({ onApply }) {
   const [settings, setSettings] = useState({
     min: '',
     max: '',
-    mode: 'single',
+    mode: GAME_MODE.single,
     player1Name: '',
     player2Name: '',
     attempts: ''
@@ -51,7 +52,7 @@ function GameSettings({ onApply }) {
         </div>
 
         <div className="form-row">
-          {settings.mode === 'single' ? (
+          {settings.mode === GAME_MODE.single ? (
             <>
               <PlayerName
                 name ={settings.player1Name}

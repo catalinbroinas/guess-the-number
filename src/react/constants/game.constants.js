@@ -1,4 +1,9 @@
 
+export const GAME_MODE = {
+  single: 'single',
+  multi: 'multi'
+};
+
 export const GAME_STATUS = {
   idle: 'idle',
   playing: 'playing',

@@ -1,3 +1,4 @@
+import { GAME_MODE } from "../../../../constants/game.constants";
 
 function GameMode({ gameMode, onGameModeChange }) {
   return (
@@ -10,8 +11,8 @@ function GameMode({ gameMode, onGameModeChange }) {
         value={gameMode}
         onChange={(e) => onGameModeChange(e.target.value)}
       >
-        <option value="single">Single player</option>
-        <option value="multi">Two players</option>
+        <option value={GAME_MODE.single}>Single player</option>
+        <option value={GAME_MODE.multi}>Two players</option>
       </select>
     </div>
   );
