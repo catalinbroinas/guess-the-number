@@ -1,22 +1,23 @@
+import { GAME_MODE } from "../../../constants/game.constants";
 
 function GameInfo({ settings, currentPlayer }) {
-  const { min, max, player1Name, leftAttempts } = settings;
+  const { min, max, mode, leftAttempts } = settings;
 
   return (
     <ul className="game__info shadow-1">
-      {(currentPlayer || player1Name) && (<li className="game__info-item">
-        {currentPlayer && (
-          <>
-            <strong className="game__info-label">Player turn:</strong> {currentPlayer}
-          </>
-        )}
-
-        {!currentPlayer && player1Name && (
-          <>
-            <strong className="game__info-label">Player:</strong> {player1Name}
-          </>
-        )}
-      </li>)}
+      {currentPlayer && (
+        <li className="game__info-item">
+          {mode === GAME_MODE. single ? (
+            <>
+              <strong className="game__info-label">Player:</strong> {currentPlayer}
+            </>
+          ) : (
+            <>
+              <strong className="game__info-label">Player turn:</strong> {currentPlayer}
+            </>
+          )}
+        </li>
+      )}
 
       <li className="game__info-item">
         <strong className="game__info-label">Range:</strong> {min} - {max}

@@ -112,7 +112,7 @@ function Game() {
         <>
           <GameInfo
             settings={settings}
-            currentPlayer={settings.mode === GAME_MODE.multi ? currentPlayer : ''}
+            currentPlayer={currentPlayer}
           />
 
           <Feedback message={feedbackMessage} />
