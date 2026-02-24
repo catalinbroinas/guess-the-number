@@ -2,9 +2,9 @@ import Game from "./components/features/Game/Game";
 
 function App() {
   return (
-    <div className="app-container">
+    <main className="app-container">
       <Game />
-    </div>
+    </main>
   )
 }
 
