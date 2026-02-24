@@ -11,24 +11,24 @@ import {
 function GameSettings({ onApply }) {
   const [settings, setSettings] = useState(DEFAULT_GAME_SETTINGS_FORM);
 
+  const normalizeSettings = (settings) => ({
+    ...settings,
+    min: Number(settings.min),
+    max: Number(settings.max),
+    player1Name: settings.player1Name.trim(),
+    player2Name: settings.player2Name.trim(),
+    attempts: settings.attempts === ''
+      ? null
+      : Number(settings.attempts)
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onApply(normalizeSettings(settings));
+  };
+
   return (
-    <form 
-      className="form-container"
-      onSubmit={(e) => {
-        e.preventDefault();
-        onApply({
-          ...settings,
-          min: Number(settings.min),
-          max: Number(settings.max),
-          mode: settings.mode,
-          player1Name: settings.player1Name.trim(),
-          player2Name: settings.player2Name.trim(),
-          attempts: settings.attempts === ''
-            ? null
-            : Number(settings.attempts)
-        });
-      }}
-    >
+    <form className="form-container" onSubmit={handleSubmit}>
       <NumberRange
         min={settings.min}
         max={settings.max}
