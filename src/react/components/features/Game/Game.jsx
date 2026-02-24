@@ -117,9 +117,10 @@ function Game() {
 
           <Feedback message={feedbackMessage} />
 
-          <GuessInput 
-            numberRange={settings} 
-            onGuess={handleGuess} 
+          <GuessInput
+            min={settings.min}
+            max={settings.max}
+            onGuess={handleGuess}
           />
         </>
       )}

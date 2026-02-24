@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GuessInput({ numberRange, onGuess }) {
+function GuessInput({ min, max, onGuess }) {
   const [localNumber, setLocalNumber] = useState("");
 
   return (
@@ -14,9 +14,9 @@ function GuessInput({ numberRange, onGuess }) {
             id="guess-input"
             type="number"
             className="form-control"
-            placeholder={numberRange.min}
-            min={numberRange.min}
-            max={numberRange.max}
+            placeholder={min}
+            min={min}
+            max={max}
             value={localNumber}
             onChange={(e) => setLocalNumber(e.target.value)}
           />
