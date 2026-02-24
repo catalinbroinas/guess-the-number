@@ -101,7 +101,7 @@ function Game() {
   };
 
   return (
-    <div className="game">
+    <section className="game">
       <h1 className="game__title">Guess the number</h1>
 
       {gameStatus === GAME_STATUS.idle && (
@@ -138,7 +138,7 @@ function Game() {
           />
         </>
       )}
-    </div>
+    </section>
   );
 }
 
