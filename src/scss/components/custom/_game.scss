@@ -30,6 +30,7 @@
     border-bottom-right-radius: $rounded-md;
     padding: 1rem 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
     
     @include custom-text($font-text, 500, 1rem, $text-primary);
   }
@@ -49,6 +50,7 @@
     border-bottom-right-radius: $rounded-lg;
     padding: 1rem 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
   }
 
   &__info-item {

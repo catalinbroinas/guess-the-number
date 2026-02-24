@@ -4,7 +4,7 @@ function GameInfo({ settings, currentPlayer }) {
   const { min, max, mode, leftAttempts } = settings;
 
   return (
-    <ul className="game__info shadow-1">
+    <ul className="game__info">
       {currentPlayer && (
         <li className="game__info-item">
           {mode === GAME_MODE. single ? (

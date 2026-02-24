@@ -2,7 +2,7 @@
 function Feedback({ message }) {
   return (
     <>
-      {message && <p className="game__feedback shadow-1">{message}</p>}
+      {message && <p className="game__feedback">{message}</p>}
     </>
   );
 }
