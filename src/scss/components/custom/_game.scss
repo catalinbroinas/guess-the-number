@@ -16,6 +16,10 @@
   max-width: 680px;
   box-shadow: 0 8px 16px rgba($bg-brand, 0.5);
 
+  @include media-breakpoint-down($bp-md) {
+    border-radius: 0;
+  }
+
   &__title {
     @include title($color: $text-accent);
     margin-bottom: 2rem;
